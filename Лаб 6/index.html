@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API — Задачи | Пользователи | Погода</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <script src="scripts.js" defer></script>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="logo">🌐 API </div>
+            <nav class="main-nav">
+                <button class="nav-btn active" data-api="todos">✅ Задачи</button>
+                <button class="nav-btn" data-api="users">👥 Пользователи</button>
+                <button class="nav-btn" data-api="weather">🌤️ Погода</button>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container main-content">
+        <section id="todos-panel" class="panel active-panel">
+            <div class="panel-header">
+                <h2>✅ Управление задачами</h2>
+            </div>
+            <div class="panel-controls">
+                <button id="load-todos" class="btn btn-primary">📋 Загрузить задачи</button>
+            </div>
+            <div class="two-columns">
+                <div class="card">
+                    <h3>➕ Создать задачу (POST)</h3>
+                    <form id="create-todo-form">
+                        <input type="text" id="todo-title" placeholder="Название задачи" required>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="todo-completed"> Выполнено
+                        </label>
+                        <button type="submit" class="btn btn-success">Создать</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>✏️ Обновить задачу (PUT)</h3>
+                    <form id="update-todo-form">
+                        <input type="number" id="update-todo-id" placeholder="ID задачи" required>
+                        <input type="text" id="update-todo-title" placeholder="Новое название">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="update-todo-completed"> Выполнено
+                        </label>
+                        <button type="submit" class="btn btn-warning">Обновить</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>🗑️ Удалить задачу (DELETE)</h3>
+                    <form id="delete-todo-form">
+                        <input type="number" id="delete-todo-id" placeholder="ID задачи" required>
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </div>
+            </div>
+            <div class="result-area">
+                <div id="todos-result" class="result-box">Результат операций</div>
+                <div id="todos-list" class="todos-list"></div>
+                <div id="todos-state" class="state-message"></div>
+            </div>
+        </section>
+
+        <section id="users-panel" class="panel">
+            <div class="panel-header">
+                <h2>👥 Управление пользователями</h2>
+            </div>
+            <div class="panel-controls">
+                <button id="load-users" class="btn btn-primary">👥 Загрузить пользователей</button>
+            </div>
+            <div class="two-columns">
+                <div class="card">
+                    <h3>➕ Создать пользователя (POST)</h3>
+                    <form id="create-user-form">
+                        <input type="text" id="user-name" placeholder="Имя" required>
+                        <input type="email" id="user-email" placeholder="Email" required>
+                        <input type="text" id="user-phone" placeholder="Телефон">
+                        <button type="submit" class="btn btn-success">Создать</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>✏️ Обновить пользователя (PUT)</h3>
+                    <form id="update-user-form">
+                        <input type="number" id="update-user-id" placeholder="ID пользователя" required>
+                        <input type="text" id="update-user-name" placeholder="Новое имя">
+                        <input type="email" id="update-user-email" placeholder="Новый email">
+                        <button type="submit" class="btn btn-warning">Обновить</button>
+                    </form>
+                </div>
+                <div class="card">
+                    <h3>🗑️ Удалить пользователя (DELETE)</h3>
+                    <form id="delete-user-form">
+                        <input type="number" id="delete-user-id" placeholder="ID пользователя" required>
+                        <button type="submit" class="btn btn-danger">Удалить</button>
+                    </form>
+                </div>
+            </div>
+            <div class="result-area">
+                <div id="users-result" class="result-box">Результат операций</div>
+                <div id="users-list" class="users-grid"></div>
+                <div id="users-state" class="state-message"></div>
+            </div>
+        </section>
+
+        <section id="weather-panel" class="panel">
+            <div class="panel-header">
+                <h2>🌤️ Прогноз погоды</h2>
+            </div>
+            <div class="panel-controls">
+                <select id="weather-city" class="city-select"></select>
+                <button id="load-weather" class="btn btn-primary">🌡️ Показать погоду</button>
+            </div>
+            <div class="result-area">
+                <div id="weather-result" class="result-box">Результат запроса</div>
+                <div id="weather-info" class="weather-container"></div>
+                <div id="weather-state" class="state-message"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+            <address>
+            <strong>Контактная информация:</strong><br>
+            Автор: Яськов Егор Викторович<br>
+            Группа: КС-26<br>
+            Email: <a href="egor-yaskov@mail.ru">egor-yaskov@mail.ru</a><br>
+            GitHub: <a href="https://github.com/RakomSakommm" target="_blank">github.com/RakomSakommm</a>
+        </address>
+    </footer>
+</body>
+</html>
